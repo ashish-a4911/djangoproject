@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+
+    <h1>Search for a user with the phone number field.</h1>
+
+</head>
+<body>
+
+    {% block replace %}
+
+<br/>
+<form action="{% url 'search' %}" method="GET" value="{{request.GET.q}}">
+Search <input type="text" name="q" value="{{request.GET.q}}" placeholder="Search posts"/>
+<input type="submit" name="submit" value="Search"/>
+</form>
+
+
+{% if submitbutton == 'Search' and request.GET.q != '' %}
+{% if results %}
+
+    <br/>
+<br/>
+
+    Results for {{request.GET.q }}
+<br/><br/>
+
+{% for result in results %}
+
+Phone no. : {{result.phone_no}} ,    User is :  {{result.name}}
+<br/>
+<br/>
+<br/>
+
+User is :  <b>{{result.name}}
+<br/>
+
+{% endfor %}
+{% else %}
+
+    <br/>
+<br/>
+
+
+
+<h1> No search results for this query! </h1>
+
+
+{% endif %}
+{% endif %}
+
+        {% endblock %}
+
+
+
+</body>
+</html>
